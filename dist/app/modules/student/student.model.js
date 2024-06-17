@@ -5,7 +5,17 @@ const mongoose_1 = require("mongoose");
 exports.studentSchema = new mongoose_1.Schema({
     id: { type: String, required: true, unique: true },
     name: {
-        firstName: String,
+        firstName: {
+            type: String,
+            required: [true, 'First name is required'],
+            validate: {
+                validator: function (value) {
+                    const firstnameString = value.charAt(0).toUpperCase() + value.slice(1);
+                    return firstnameString === value;
+                },
+                message: '{VALUE} is not in capitalize format'
+            }
+        },
         lastName: String,
     },
     email: { type: String, required: true, unique: true },
