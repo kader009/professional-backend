@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon ./dist/server.js",
-    "start": "ts-node-dev --respawn --transpile-only src/server.ts",
+    "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
+    "start": "nodemon ./dist/server.js",
+    "start:prod": "node ./dist/server.js",
     "build": "tsc",
     "lint": "eslint src --ignore-path .eslintignore --ext .ts",
     "lint:fix": "npx eslint src --fix",
@@ -20,6 +21,7 @@
     "express": "^4.19.2",
     "joi": "^17.13.1",
     "mongoose": "^8.4.1",
+    "ts-node-dev": "^2.0.0",
     "zod": "^3.23.8"
   },
   "devDependencies": {

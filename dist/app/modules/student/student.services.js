@@ -12,7 +12,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.studentServices = void 0;
 const student_model_1 = require("./student.model");
 const createStudentIntoDb = (student) => __awaiter(void 0, void 0, void 0, function* () {
-    const result = yield student_model_1.StudentModel.create(student);
+    // const result = await StudentModel.create(student)  // built in mongoose static methods
+    const studentData = new student_model_1.StudentModel(student); //create an instance
+    if (yield studentData.isUserExists(student.id)) {
+        throw new Error('user already exists');
+    }
+    const result = yield studentData.save(); // built in mongoose instance methods
     return result;
 });
 const getAllstudentFromDB = () => __awaiter(void 0, void 0, void 0, function* () {

@@ -1,3 +1,5 @@
+import { Model } from 'mongoose'
+
 export interface Guardian {
   fatherName: string
   fatherOccupation: string
@@ -12,7 +14,7 @@ export interface Student {
     lastName: string
   }
   email: string
-  gender: 'male' | 'female' | 'others';
+  gender: 'male' | 'female' | 'others'
   birthDay: string
   contactNumber: string
   bloodGroup?: 'A+' | 'A-' | 'B+' | 'B-' | 'AB+' | 'AB-' | 'O+' | 'O-'
@@ -20,3 +22,9 @@ export interface Student {
   profileImage?: string
   isActive: 'active' | 'inactive'
 }
+
+export interface StudentMethods {
+  isUserExists(id: string): Promise<Student | null>
+}
+
+export type StudentModels = Model<Student, Record<string, never>, StudentMethods>

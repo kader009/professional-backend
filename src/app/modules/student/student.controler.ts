@@ -27,10 +27,10 @@ const createStudent = async (req: Request, res: Response) => {
       message: 'student create successfully',
       data: result,
     })
-  } catch (error) {
-    res.status(400).json({
+  } catch (error : any) {
+    res.status(500).json({
       success: false,
-      message: 'something went wrong here.',
+      message: error.message || 'something went wrong here.',
       error: error,
     })
   }
