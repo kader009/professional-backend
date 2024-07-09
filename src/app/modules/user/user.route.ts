@@ -1,8 +1,20 @@
-import express from 'express'
-import { UserController } from './user.controller';
+import express, { NextFunction, Request, Response } from 'express'
+import { UserController } from './user.controller'
 
 const router = express.Router()
 
-router.post('/create-student', UserController.createStudent)
+const validatioMiddleware = (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
+  console.log('i want to validate your request')
+}
 
-export const UserRoutes = router; 
+router.post(
+  '/create-student',
+  validatioMiddleware,
+  UserController.createStudent,
+)
+
+export const UserRoutes = router

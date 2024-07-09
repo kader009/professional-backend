@@ -7,5 +7,8 @@ exports.UserRoutes = void 0;
 const express_1 = __importDefault(require("express"));
 const user_controller_1 = require("./user.controller");
 const router = express_1.default.Router();
-router.post('/create-student', user_controller_1.UserController.createStudent);
+const validatioMiddleware = (req, res, next) => {
+    console.log('i want to validate your request');
+};
+router.post('/create-student', validatioMiddleware, user_controller_1.UserController.createStudent);
 exports.UserRoutes = router;
