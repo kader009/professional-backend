@@ -4,6 +4,12 @@ import { Student, StudentMethods, StudentModels } from './student.interface'
 export const studentSchema = new Schema<Student, StudentModels, StudentMethods>(
   {
     id: { type: String, required: true, unique: true },
+    user: {
+      type: Schema.Types.ObjectId,
+      required: [true, 'user id is required'],
+      unique: true,
+      ref:'User'
+    },
     name: {
       firstName: {
         type: String,
@@ -44,20 +50,16 @@ export const studentSchema = new Schema<Student, StudentModels, StudentMethods>(
       motherOccupation: { type: String, required: true },
     },
     profileImage: { type: String },
-    isActive: {
-      type: String,
-      enum: ['active', 'inactive'],
-      default: 'active',
-    },
+
   },
 )
 
-studentSchema.methods.isUserExits = async function (id: string) {
-  const existingUser = await StudentModel.findOne({ id })
-  return existingUser
-}
+// studentSchema.methods.isUserExits = async function (id: string) {
+//   const existingUser = await StudentModel.findOne({ id })
+//   return existingUser
+// }
 
 export const StudentModel = model<Student, StudentModels>(
-  'studnet',
+  'student',
   studentSchema,
 )

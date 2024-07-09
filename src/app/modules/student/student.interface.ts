@@ -1,4 +1,4 @@
-import { Model } from 'mongoose'
+import { Model, Types } from 'mongoose'
 
 export interface Guardian {
   fatherName: string
@@ -9,6 +9,7 @@ export interface Guardian {
 
 export interface Student {
   id: string
+  user: Types.ObjectId
   name: {
     firstName: string
     lastName: string
@@ -20,7 +21,6 @@ export interface Student {
   bloodGroup?: 'A+' | 'A-' | 'B+' | 'B-' | 'AB+' | 'AB-' | 'O+' | 'O-'
   guardian: Guardian
   profileImage?: string
-  isActive: 'active' | 'inactive'
 }
 
 export interface StudentMethods {

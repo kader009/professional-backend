@@ -10,7 +10,7 @@ const userSchema = new Schema<TUser>(
     },
     needsPasswordChange: { type: Boolean, default: true },
     role: { type: String, enum: ['Admin', 'student', 'faculty'] },
-    status: { type: String, enum: ['in-progress', 'blocked'] },
+    status: { type: String, enum: ['in-progress', 'blocked'], default:'in-progress' },
     isDeleted: {
       type: Boolean,
       default: false,

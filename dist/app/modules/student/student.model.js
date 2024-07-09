@@ -1,18 +1,15 @@
 "use strict";
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.StudentModel = exports.studentSchema = void 0;
 const mongoose_1 = require("mongoose");
 exports.studentSchema = new mongoose_1.Schema({
     id: { type: String, required: true, unique: true },
+    user: {
+        type: mongoose_1.Schema.Types.ObjectId,
+        required: [true, 'user id is required'],
+        unique: true,
+        ref: 'User'
+    },
     name: {
         firstName: {
             type: String,
@@ -52,16 +49,9 @@ exports.studentSchema = new mongoose_1.Schema({
         motherOccupation: { type: String, required: true },
     },
     profileImage: { type: String },
-    isActive: {
-        type: String,
-        enum: ['active', 'inactive'],
-        default: 'active',
-    },
 });
-exports.studentSchema.methods.isUserExits = function (id) {
-    return __awaiter(this, void 0, void 0, function* () {
-        const existingUser = yield exports.StudentModel.findOne({ id });
-        return existingUser;
-    });
-};
-exports.StudentModel = (0, mongoose_1.model)('studnet', exports.studentSchema);
+// studentSchema.methods.isUserExits = async function (id: string) {
+//   const existingUser = await StudentModel.findOne({ id })
+//   return existingUser
+// }
+exports.StudentModel = (0, mongoose_1.model)('student', exports.studentSchema);
