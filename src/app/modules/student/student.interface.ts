@@ -21,6 +21,7 @@ export interface Student {
   bloodGroup?: 'A+' | 'A-' | 'B+' | 'B-' | 'AB+' | 'AB-' | 'O+' | 'O-'
   guardian: Guardian
   profileImage?: string
+  admissionSemester: Types.ObjectId;
 }
 
 export interface StudentMethods {

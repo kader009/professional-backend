@@ -49,6 +49,10 @@ exports.studentSchema = new mongoose_1.Schema({
         motherOccupation: { type: String, required: true },
     },
     profileImage: { type: String },
+    admissionSemester: {
+        type: mongoose_1.Schema.Types.ObjectId,
+        ref: 'AcademinSemester'
+    }
 });
 // studentSchema.methods.isUserExits = async function (id: string) {
 //   const existingUser = await StudentModel.findOne({ id })

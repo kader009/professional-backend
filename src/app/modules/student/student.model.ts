@@ -50,6 +50,10 @@ export const studentSchema = new Schema<Student, StudentModels, StudentMethods>(
       motherOccupation: { type: String, required: true },
     },
     profileImage: { type: String },
+    admissionSemester:{
+      type: Schema.Types.ObjectId,
+      ref:'AcademinSemester'
+    }
 
   },
 )

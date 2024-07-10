@@ -12,6 +12,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.AcademicSemesterServices = void 0;
 const academicSemester_model_1 = require("./academicSemester.model");
 const createAcademicSemesterIntoDB = (payload) => __awaiter(void 0, void 0, void 0, function* () {
+    const academicSemesterNameCodeMap = {
+        Autumn: '01',
+        Summar: '02',
+        Fall: '03',
+    };
+    if (academicSemesterNameCodeMap[payload.name] !== payload.code) {
+        throw new Error('Invalid semester code');
+    }
     const result = yield academicSemester_model_1.AcademicSemesterModel.create(payload);
     return result;
 });
