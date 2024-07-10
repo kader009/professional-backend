@@ -22,7 +22,7 @@ const createStudentIntoDb = (password, student) => __awaiter(void 0, void 0, voi
     // if not given password. use default password
     UserData.password = password || config_1.default.default_password;
     // set manually generated id
-    UserData.id = '2025100001';
+    UserData.id = '2025100002';
     // set student role
     UserData.role = 'student';
     const newUser = yield user_model_1.UserModel.create(UserData); // built in mongoose static methods

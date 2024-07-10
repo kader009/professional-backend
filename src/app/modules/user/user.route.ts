@@ -1,19 +1,13 @@
-import express, { NextFunction, Request, Response } from 'express'
+import express from 'express'
 import { UserController } from './user.controller'
+import { studentZodSchema } from '../student/student.zodValition'
+import ValidationRequest from '../../middleware/validateRequest'
 
 const router = express.Router()
 
-const validatioMiddleware = (
-  req: Request,
-  res: Response,
-  next: NextFunction,
-) => {
-  console.log('i want to validate your request')
-}
-
 router.post(
   '/create-student',
-  validatioMiddleware,
+  ValidationRequest(studentZodSchema),
   UserController.createStudent,
 )
 
